@@ -28,7 +28,7 @@ ALLOWED_HOSTS = [
 ]
 
 SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = False#config('DEBUG', default=False, cast=bool)
 
 # Application definition
 
@@ -50,7 +50,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleWare',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -95,11 +95,11 @@ DATABASES = {
     }
 }
 
-default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+# default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 
-DATABASES = {'default': config('DATABASE_URL', default=default_dburl, cast=dburl)}
+# DATABASES = {'default': config('DATABASE_URL', default=default_dburl, cast=dburl)}
 
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 CORS_ORIGIN_ALLOW_ALL = True
 
