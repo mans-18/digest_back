@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 
 from decouple import config
-from dj_database_url import parse as dburl
+from dj_database_url import parse as d
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,6 +27,8 @@ ALLOWED_HOSTS = [
     'digestback.herokuapp.com',
 ]
 
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 # Application definition
 
@@ -95,7 +97,7 @@ WSGI_APPLICATION = 'digproj.wsgi.application'
 
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 
-DATABASES = { 'default': config('DATABASE_URL', default=default_dburl, cast=dburl) }
+DATABASES = {'default': config('DATABASE_URL', default=default_dburl, cast=dburl)}
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -146,7 +148,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#TATICFILES_DIRS = [
+#STATICFILES_DIRS = [
 #    os.path.join(BASE_DIR, "static"),
 #    'templates/css/',
 #    'templates/js/',
