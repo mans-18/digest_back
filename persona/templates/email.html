@@ -1,0 +1,29 @@
+<h1>Digest</h1>
+<h2>Bom dia!</h2>
+<h2>Dr(a) {{extra}},</h2>
+{% if event_data %}
+{% if persona_data %}
+{% if kollege_data %}
+
+<h2>Esta é sua agenda de amanhã conosco:</h2>
+<ul>
+    {% for kol in kollege_data %}
+        {% for ev in event_data %}
+            {% for item in persona_data %}
+                <p>
+                    {% if kol.id == ev.kollege_id %}
+                        {% if item.id == ev.persona_id %}
+                            {{item.name}}/{{kol.crm}}<br>
+                            {{ev.title}} ({{ev.start}})
+                        {% endif %}
+                    {% endif %}
+                </p>
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
+</ul>
+{% else %}
+    <p>Não haverá exames amanhã!</p>
+{% endif %}
+{% endif %}
+{% endif %}
