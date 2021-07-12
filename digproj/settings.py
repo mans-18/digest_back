@@ -99,7 +99,7 @@ DATABASES = {
 
 # DATABASES = {'default': config('DATABASE_URL', default=default_dburl, cast=dburl)}
 
-# DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 CORS_ORIGIN_ALLOW_ALL = True
 
