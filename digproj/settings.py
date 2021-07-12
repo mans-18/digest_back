@@ -97,7 +97,7 @@ WSGI_APPLICATION = 'digproj.wsgi.application'
 
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 
-DATABASES = {'default': config('DATABASE_URL', default=default_dburl, cast=dburl)}
+# DATABASES = {'default': config('DATABASE_URL', default=default_dburl, cast=dburl)}
 
 DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
