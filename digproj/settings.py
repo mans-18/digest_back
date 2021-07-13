@@ -31,7 +31,7 @@ ALLOWED_HOSTS = [
 ]
 
 SECRET_KEY = config('SECRET_KEY')
-DEBUG = True#config('DEBUG', default=False, cast=bool)
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 # Application definition
 
