@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'django_filters',
     'user',
     'persona',
-    'digproj.digproj',
+    'digproj',
 ]
 
 MIDDLEWARE = [
