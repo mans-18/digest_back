@@ -13,7 +13,7 @@ import smtplib, datetime, cgi, json
 from email.mime.text import MIMEText
 from datetime import timedelta
 
-import cv2
+#import cv2
 import argparse
 
 # from django.views.decorators.clickjacking import xframe_options_exempt
