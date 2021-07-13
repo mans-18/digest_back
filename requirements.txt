@@ -60,7 +60,6 @@ Pillow==6.1.0
 pre-commit==0.8.0
 preppy==3.0.1
 psycopg2==2.8.6
-psycopg2-binary
 py2exe==0.9.2.2
 pycodestyle==2.5.0
 pycparser==2.19
