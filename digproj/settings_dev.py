@@ -24,16 +24,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 ALLOWED_HOSTS = [
-    'digest.com.br',
-    'digest-8d0a6.web.app',
-    'digest-8d0a6.firebaseapp.com',
     'localhost',
     '127.0.0.1',
     'digestback.herokuapp.com',
 ]
 
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
+SECRET_KEY='h%$7j91w!qrkc=ve+0g#^vz)x=n-9@-b70fs@6a*fb$m9^4mxx'
+DEBUG=True
 
 # Application definition
 
@@ -89,16 +86,16 @@ WSGI_APPLICATION = 'digproj.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'dig',
-#         'USER': 'postgres',
-#         'PASSWORD': 'leugim2020',
-#         'HOST': 'localhost',
-#         'PORT': '5433',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dig',
+        'USER': 'postgres',
+        'PASSWORD': 'leugim2020',
+        'HOST': 'localhost',
+        'PORT': '5433',
+    }
+}
 
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 
@@ -184,7 +181,7 @@ EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_PASSWORD = 'leugim@13'
+EMAIL_HOST_PASSWORD = 'euuncpixoyhkzmdn' #'leugim@2021'
 EMAIL_HOST_USER = 'miguel.sza@gmail.com'
 EMAIL_PORT = 587
 # EMAIL_PORT = 465
