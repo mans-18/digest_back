@@ -26,7 +26,8 @@ from persona.serializers import (KollegeSerializer,
                                  PersonaSerializer,
                                  EventSerializer,
                                  EventReportSerializer,
-                                 PartnerSerializer)
+                                 PartnerSerializer,
+                                 EmailFromSiteSerializer)
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import Http404, HttpRequest, HttpResponse
@@ -141,9 +142,21 @@ class EmailKollege(mixins.ListModelMixin,
 class EmailFromSite(mixins.ListModelMixin,
                   mixins.CreateModelMixin,
                   generics.GenericAPIView):
+
     # pylint: disable=no-member
-    queryset = {}#Event.objects.filter(start__gte=datetime.date.today())
-    serializer_class = EventSerializer
+
+    #AssertionError: 'EmailFromSite' should either include a `queryset` attribute, 
+    # or override the `get_queryset()` method.
+    def get_queryset(self):
+        req = json.loads(self.request.body.decode())
+        name = req['name']
+        mobile = req['mobile']
+        email = req['email']
+        body = req['body']
+        return name, mobile, email, body
+    #queryset = {}#Event.objects.filter(start__gte=datetime.date.today())
+    # May override get_serializer
+    serializer_class = EmailFromSiteSerializer
 
     # @xframe_options_exempt
     def emailFromSite(self, request, *args, **kwargs):

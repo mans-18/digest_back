@@ -1,6 +1,6 @@
 # pylint: disable=import-error
 from rest_framework import serializers
-from core.models import Kollege, Event, Persona, EventReport, Partner
+from core.models import Kollege, Event, Persona, EventReport, Partner, EmailFromSite
 
 
 class KollegeSerializer(serializers.ModelSerializer):
@@ -68,3 +68,10 @@ class PersonaDetailSerializer(PersonaSerializer):
     # Override events and kollegen of the PersonaSerializer
     events = EventSerializer(many=True, read_only=True)
     kollegen = KollegeSerializer(many=True, read_only=True)
+
+class EmailFromSiteSerializer(serializers.ModelSerializer):
+    """Serialize data from email sent by site"""
+    class Meta:
+        model = EmailFromSite
+        fields = ('id', 'name', 'mobile', 'email', 'body')
+        read_only_fields = ('id',)

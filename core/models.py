@@ -250,3 +250,15 @@ class GenericGroup(models.Model):
 
     def __str__(self):
         return self.gg1
+
+class EmailFromSite(models.Model):
+    name = models.CharField(null=True, max_length=255, blank=True)
+    mobile = models.CharField(null=True, max_length=255, blank=True)
+    email = models.CharField(null=True, max_length=255, blank=True)
+    body = models.CharField(null=True, max_length=255, blank=True)
+
+    class Meta:
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
