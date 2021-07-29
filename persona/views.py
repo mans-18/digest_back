@@ -148,12 +148,18 @@ class EmailFromSite(mixins.ListModelMixin,
     #AssertionError: 'EmailFromSite' should either include a `queryset` attribute, 
     # or override the `get_queryset()` method.
     def get_queryset(self):
-        req = json.loads(self.request.body.decode())
+        #req = json.loads(self.request.body.decode())
+        #req = self.request.body
+        req = self.request.data
+        print(req)
         name = req['name']
         mobile = req['mobile']
         email = req['email']
         body = req['body']
-        return name, mobile, email, body
+        emailTxt = name + mobile + email + body
+        #print(emailTxt)
+        #return emailTxt
+        return req
     #queryset = {}#Event.objects.filter(start__gte=datetime.date.today())
     # May override get_serializer
     serializer_class = EmailFromSiteSerializer
@@ -164,12 +170,27 @@ class EmailFromSite(mixins.ListModelMixin,
             #print(request.body.decode())
             req = json.loads(request.body.decode())
             #print('req', req)
-            name = req['name']
-            mobile = req['mobile']
-            email = req['email']
-            body = req['body']
+            if req['name']:
+                name = req['name']
+            else:
+                name = 'em branco'
+            if req['mobile']:
+                mobile = req['mobile']
+            else:
+                mobile = 'em branco'
+            if req['email']:
+                email = req['email']
+            else:
+                email = 'em branco'
+            if req['body']:
+                body = req['body']
+            else:
+                body = 'em branco'
+            #msg_html = render_to_string('emailFromSite.html', {'name': name, 'mobile': mobile, 'email': email, 'body': body}, )
             msg_html = render_to_string('emailFromSite.html', {'name': name, 'mobile': mobile, 'email': email, 'body': body}, )
-            template_email_text = 'hiiii'
+            template_email_text = 'Cliente: ' + name + \
+            '/ '+ mobile + '/ ' + email + '/ ' + body
+            print(name)
             return send_mail('Email do site',
                             template_email_text,
                             'miguel.sza@gmail.com',
