@@ -36,10 +36,10 @@ ALLOWED_HOSTS = [
     'digestback.herokuapp.com',
 ]
 
-SECRET_KEY = config('SECRET_KEY')
+#SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-SECRET_KEY = os.environ['SECRET_KEY']
+#SECRET_KEY = os.environ['SECRET_KEY']
 SECRET_KEY='h%$7j91w!qrkc=ve+0g#^vz)x=n-9@-b70fs@6a*fb$m9^4mxx'
 
 # Application definition
@@ -154,7 +154,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
