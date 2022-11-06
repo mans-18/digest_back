@@ -24,6 +24,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 ALLOWED_HOSTS = [
+    'https://digestback.herokuapp.com/auth/',
+    'digestback.herokuapp.com/auth',
     'digest.com.br',
     'www.digest.com.br',
     'hhtp://digest.com.br',
