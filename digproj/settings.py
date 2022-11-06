@@ -39,6 +39,8 @@ ALLOWED_HOSTS = [
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
+SECRET_KEY = os.environ['SECRET_KEY']
+
 # Application definition
 
 INSTALLED_APPS = [
