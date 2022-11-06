@@ -25,6 +25,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 ALLOWED_HOSTS = [
     'digest.com.br',
+    'www.digest.com.br',
+    'hhtp://digest.com.br',
+    'http://www.digest.com.br',
+    'hhtps://digest.com.br',
+    'https://www.digest.com.br',
     # DigestLa ap on firebase
     'digest-8d0a6.web.app',
     'digest-8d0a6.firebaseapp.com',
@@ -112,6 +117,7 @@ default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 DATABASES = {'default': config('DATABASE_URL', default=default_dburl, cast=dburl)}
 
 #DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
 
 CORS_ORIGIN_ALLOW_ALL = True
 
