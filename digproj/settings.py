@@ -24,6 +24,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 ALLOWED_HOSTS = [
+'''
+After adding the 2 hosts below, CORS error went off. But after commenting all except the last
+(required to prevent a 400 bad request). UOL HOST problem??? Firebase problem ???
+'''
+
   #  'https://digestback.herokuapp.com/auth/',
   #  'digestback.herokuapp.com/auth',
   #  'digest.com.br',
@@ -40,7 +45,7 @@ ALLOWED_HOSTS = [
   #  'digest-865d1.firebaseapp.com',
     'localhost',
     '127.0.0.1',
-   # 'digestback.herokuapp.com',
+    'digestback.herokuapp.com',
 ]
 
 #SECRET_KEY = config('SECRET_KEY')
