@@ -40,7 +40,7 @@ ALLOWED_HOSTS = [
   #  'digest-865d1.firebaseapp.com',
     'localhost',
     '127.0.0.1',
-    'digestback.herokuapp.com',
+   # 'digestback.herokuapp.com',
 ]
 
 #SECRET_KEY = config('SECRET_KEY')
