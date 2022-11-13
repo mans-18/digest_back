@@ -25,6 +25,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost:4200',
     'digestback.herokuapp.com',
+    'digest.com.br',
 ]
 
 DEBUG = config('DEBUG', default=False, cast=bool)
@@ -80,7 +81,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'digproj.wsgi.application'
 
 
-
+### Required to deploy
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 
 DATABASES = {'default': config('DATABASE_URL', default=default_dburl, cast=dburl)}
