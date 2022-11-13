@@ -79,8 +79,11 @@ class EmailKollege(mixins.ListModelMixin,
                 # Append a dict value
                 toEmail.append(item["email"])
                 kolIds.append(item['id'])
-                print(request.body.decode())
                 #print(kolListToMail, kolIds, toEmail)
+            print('request body count', len(request.body.decode()))
+            print('toEmail count', len(toEmail))
+            toEmailCount = len(toEmail)
+            #print('toEmail', toEmail)
 
             qs = Event.objects.order_by('start').filter(
             start__date=datetime.date.today()+timedelta(days=1)).values()
@@ -91,23 +94,26 @@ class EmailKollege(mixins.ListModelMixin,
 
             kl = Kollege.objects.all().values()
             lkl = list(kl)
-            #print(lkl)
+            #print('This lkl',lkl)
 
             ##### Shows a list of events from a single kollege ####
-            mailList = []
+            eventList = []
             for ev in lqs:
                 if ev['kollege_id'] in kolIds: #== 1:
-                    mailList.append(ev)
+                    eventList.append(ev)
+            #print('eventList', eventList)
+
             extra = ''
             for koltotal in lkl:
                 for kol in kolIds:
-                    for ev in lqs:
-                        for pers in lps:
-                            if kol == ev['kollege_id']:
-                                if pers['id'] == ev['persona_id']:
+                    #for ev in lqs:
+                        #for pers in lps:
+                           # if kol == ev['kollege_id']:
+                                #if pers['id'] == ev['persona_id']:
                                     if koltotal['id'] == kol:
                                         extra = koltotal['name']
-            
+            print('this extra', extra)
+
             #### This is done on the template ######
             # mailList_p = []
             # for ev in lqs:
@@ -115,7 +121,8 @@ class EmailKollege(mixins.ListModelMixin,
             #         if item['id'] == ev['persona_id']:
             #             mailList_p.append(item)
 
-            msg_html = render_to_string('email.html', {'event_data':mailList, 'persona_data':lps, 'kollege_data':lkl, 'extra': extra}, )
+            msg_html = render_to_string('email.html', {'event_data':eventList, 'persona_data':lps,
+                                        'kollege_data':lkl, 'extra': extra, 'toEmailCount':toEmailCount})
             # return send_mail('Digest Agenda',
             #     msg_html,
             #     'miguel.sza@gmail.com',
@@ -123,7 +130,7 @@ class EmailKollege(mixins.ListModelMixin,
             #     fail_silently=False,
             #     )
             template_email_text = 'hi'
-            return send_mail('Digest email samples',
+            return send_mail('Digest email',
                             template_email_text,
                             'miguel.sza@gmail.com',
                             toEmail,
