@@ -26,8 +26,8 @@ ALLOWED_HOSTS = [
     'localhost:4200',
     'digestback.herokuapp.com',
     #'https://digestback.herokuapp.com/api/persona/email/',
-    'digest.com.br',
-    #'https://digest.com.br',
+    #'digest.com.br',
+    'https://digest.com.br',
     #'https://www.digest.com.br',
 ]
 
