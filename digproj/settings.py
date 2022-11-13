@@ -26,6 +26,8 @@ ALLOWED_HOSTS = [
     'localhost:4200',
     'digestback.herokuapp.com',
     'digest.com.br',
+    'https://digest.com.br',
+    'https://www.digest.com.br',
 ]
 
 DEBUG = config('DEBUG', default=False, cast=bool)
