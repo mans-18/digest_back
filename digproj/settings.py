@@ -20,9 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
-ALLOWED_HOSTS = ['*']
-'''
-[
+ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     'localhost:4200',
@@ -32,7 +30,6 @@ ALLOWED_HOSTS = ['*']
     'https://digest.com.br',
     'https://www.digest.com.br',
 ]
-'''
 
 DEBUG = True #config('DEBUG', default=False, cast=bool)
 
