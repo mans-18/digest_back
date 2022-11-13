@@ -25,10 +25,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost:4200',
     'digestback.herokuapp.com',
-    #'https://digestback.herokuapp.com/api/persona/email/',
     'digest.com.br',
-    #'https://digest.com.br',
-    #'https://www.digest.com.br',
 ]
 
 DEBUG = config('DEBUG', default=False, cast=bool)
@@ -124,24 +121,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
 AUTH_USER_MODEL = 'core.User'
 
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-#EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD_LOCAL']
-#EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD'] # APP PSW FOR DIGEST.COM.BR
-
-###### ANOTHER WAY  ########
-#EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD_LOCAL')
-#EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-#EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD_HEROKU')
-#EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD_DIGESTBACK')
-#EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD_MIG')
-EMAIL_HOST_PASSWORD = 'bdqmangfsxogsgbc' #os.environ.get('EMAIL_HOST_PASSWORD_DIGPROJ')
-
 EMAIL_HOST_USER = 'miguel.sza@gmail.com'
 EMAIL_PORT = 587
 # EMAIL_PORT = 465
