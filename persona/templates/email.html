@@ -2,10 +2,10 @@
 <h1>Digest</h1>
 <h2>Bom dia!</h2>
 
-{% if toEmailCount == 1 %}
+<!--Caso selicionado apenas 1 médico para enviar email-->
+{% if toEmailCount < 2 %}
 
 {% if extra %}
-
 {% if event_data %}
 {% if persona_data %}
 {% if kollege_data %}
@@ -28,21 +28,17 @@
         {% endfor %}
     {% endfor %}
 </ul>
+{% endif %}
+{% endif %}
 {% else %}
-    <p>Não haverá exames amanhã!</p>
-{% endif %}
-{% endif %}
-{% endif %}
-
-{% else %}
-    <p>A(O) Sra(Sr) não terá exames amanhã na Digest!</p>
+    <p>Doutora(o), a(o) Sra(Sr) não terá exames amanhã na Digest.</p>
+    <h3>Aproveite o seu dia!!!</h3>
 {% endif %}
 
-
+<!--Caso selecionado múltiplos médicos para enviar email-->
 {% else %}
 
 {% if extra %}
-
 {% if event_data %}
 {% if persona_data %}
 {% if kollege_data %}
@@ -72,7 +68,8 @@
 {% endif %}
 
 {% else %}
-    <p>A(O) Sra(Sr) não terá exames amanhã na Digest!</p>
+    <p>Doutora(o), não haverá exames amanhã na Digest.</p>
+    <h3>Aproveite o seu dia!!!</h3>
 {% endif %}
 
 
