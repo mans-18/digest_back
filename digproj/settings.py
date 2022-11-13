@@ -20,7 +20,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
-ALLOWED_HOSTS = [
+ALLOWED_HOSTS = ['*']
+'''
+[
     'localhost',
     '127.0.0.1',
     'localhost:4200',
@@ -30,6 +32,7 @@ ALLOWED_HOSTS = [
     'https://digest.com.br',
     'https://www.digest.com.br',
 ]
+'''
 
 DEBUG = True #config('DEBUG', default=False, cast=bool)
 
@@ -139,9 +142,10 @@ EMAIL_HOST = 'smtp.gmail.com'
 #EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 #EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD_HEROKU')
 #EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD_DIGESTBACK')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD_MIG')
+#EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD_MIG')
 
 EMAIL_HOST_USER = 'miguel.sza@gmail.com'
+EMAIL_HOST_PASSWORD = 'leugim@2021'
 EMAIL_PORT = 587
 # EMAIL_PORT = 465
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
