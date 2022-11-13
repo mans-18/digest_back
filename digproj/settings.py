@@ -25,12 +25,13 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost:4200',
     'digestback.herokuapp.com',
+    'https://digestback.herokuapp.com/api/persona/email/',
     'digest.com.br',
     'https://digest.com.br',
     'https://www.digest.com.br',
 ]
 
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = True #config('DEBUG', default=False, cast=bool)
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
