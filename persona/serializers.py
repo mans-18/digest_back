@@ -8,7 +8,7 @@ class KollegeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Kollege
-        fields = ('id', 'name', 'crm', 'email')
+        fields = ('id', 'name', 'crm', 'email', 'mobile')
         read_only_fields = ('id',)
 
 class PartnerSerializer(serializers.ModelSerializer):

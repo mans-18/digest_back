@@ -243,11 +243,13 @@ class KollegeList(mixins.ListModelMixin,
                   mixins.CreateModelMixin,
                   generics.GenericAPIView):
 
-    # permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
     # pylint: disable=no-member
     queryset = Kollege.objects.all()
     serializer_class = KollegeSerializer
-    # authentication_classes = (TokenAuthentication,)
+
+    # If active, auth is done with token sent in the header (by ModHeader) and actions are activated
+    authentication_classes = (TokenAuthentication,)
     
     # def email_kollege(self, request):
     #     # id = request.POST.get('id')
@@ -317,7 +319,7 @@ class KollegeDetail(mixins.RetrieveModelMixin,
     queryset = Kollege.objects.all()
     serializer_class = KollegeSerializer
 
-    # permission_classes =[permissions.IsAuthenticatedOrReadOnly,]
+    permission_classes =[permissions.IsAuthenticatedOrReadOnly,]
     authentication_classes = (TokenAuthentication,)
 
     def get(self, request, *args, **kwargs):
@@ -333,11 +335,11 @@ class PartnerList(mixins.ListModelMixin,
                   mixins.CreateModelMixin,
                   generics.GenericAPIView):
 
-    # permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
     # pylint: disable=no-member
     queryset = Partner.objects.all()
     serializer_class = PartnerSerializer
-    # authentication_classes = (TokenAuthentication,)
+    authentication_classes = (TokenAuthentication,)
 
     def get(self, request, *args, **kwargs):
         
@@ -357,7 +359,7 @@ class PartnerDetail(mixins.RetrieveModelMixin,
     queryset = Partner.objects.all()
     serializer_class = PartnerSerializer
 
-    # permission_classes =[permissions.IsAuthenticatedOrReadOnly,]
+    permission_classes =[permissions.IsAuthenticatedOrReadOnly,]
     authentication_classes = (TokenAuthentication,)
 
     def get(self, request, *args, **kwargs):
@@ -374,7 +376,7 @@ class PersonaList(mixins.ListModelMixin,
                   mixins.CreateModelMixin,
                   generics.GenericAPIView):
 
-    # permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
     # pylint: disable=no-member
     queryset = Persona.objects.all()
     serializer_class = PersonaSerializer
@@ -419,13 +421,16 @@ class PersonaDetail(mixins.RetrieveModelMixin,
     queryset = Persona.objects.all()
     serializer_class = PersonaSerializer
 
-    # permission_classes =[permissions.IsAuthenticatedOrReadOnly,]
+    permission_classes =[permissions.IsAuthenticatedOrReadOnly,]
     authentication_classes = (TokenAuthentication,)
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
     def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+    
+    def patch(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
 
     def delete(self, request, *args, **kwargs):
@@ -436,7 +441,7 @@ class EventList(mixins.ListModelMixin,
                   mixins.CreateModelMixin,
                   generics.GenericAPIView):
     # pylint: disable=no-member
-    # permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
     authentication_classes = (TokenAuthentication,)
 
     queryset = Event.objects.all()
@@ -459,7 +464,7 @@ class EventDetail(mixins.RetrieveModelMixin,
     queryset = Event.objects.all()
     serializer_class = EventSerializer
 
-    # permission_classes =[permissions.IsAuthenticatedOrReadOnly,]
+    permission_classes =[permissions.IsAuthenticatedOrReadOnly,]
     authentication_classes = (TokenAuthentication,)
 
     ############################################
@@ -539,6 +544,10 @@ class EventDetail(mixins.RetrieveModelMixin,
     def put(self, request, *args, **kwargs):
         #self.read_camera_capture(0)
         return self.update(request, *args, **kwargs)
+    
+    def patch(self, request, *args, **kwargs):
+        #self.read_camera_capture(0)
+        return self.update(request, *args, **kwargs)
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
@@ -548,7 +557,7 @@ class EventReportList(mixins.ListModelMixin,
                   mixins.CreateModelMixin,
                   generics.GenericAPIView):
 
-    # permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
     authentication_classes = (TokenAuthentication,)
     # pylint: disable=no-member
     queryset = EventReport.objects.all()
@@ -571,13 +580,17 @@ class EventReportDetail(mixins.RetrieveModelMixin,
     queryset = EventReport.objects.all()
     serializer_class = EventReportSerializer
 
-    # permission_classes =[permissions.IsAuthenticatedOrReadOnly,]
+    permission_classes =[permissions.IsAuthenticatedOrReadOnly,]
     authentication_classes = (TokenAuthentication,)
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
     def put(self, request, *args, **kwargs):
+        #self.read_camera_capture(0)
+        return self.update(request, *args, **kwargs)
+    
+    def patch(self, request, *args, **kwargs):
         #self.read_camera_capture(0)
         return self.update(request, *args, **kwargs)
 
