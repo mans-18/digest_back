@@ -32,6 +32,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     """Custom user model that supports using email instead of username"""
+    # User (4)
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
@@ -44,6 +45,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Kollege(models.Model):
     """Equipe to be used for a Persona"""
+    # Kollege (4)
     name = models.CharField(max_length=255, unique=True)
     #Instead of referencing User directly, set the 1st arg (model) by settings
     # user = models.ForeignKey(
@@ -64,6 +66,7 @@ class Kollege(models.Model):
 
 class Partner(models.Model):
     """Doctor or Clinics the persona comes from"""
+    # Partner (6)
     name = models.CharField(max_length=255, unique=True)
     crm = models.CharField(null=True, max_length=15, blank=True)
     email = models.EmailField(null=True, blank=True)
@@ -88,7 +91,7 @@ class Event(models.Model):
     #    on_delete=models.CASCADE
     # )
 
-    # Base (17)
+    # Event (19)
     title = models.CharField(max_length=100)
     partner = models.CharField(null=True, max_length=255, blank=True)
     start = models.DateTimeField(blank=True)
@@ -108,7 +111,6 @@ class Event(models.Model):
     genericNumber2 = models.FloatField(null=True, blank=True)
     genericNumber3 = models.FloatField(null=True, blank=True)
 
-    # Keys (2)
     persona = models.ForeignKey('Persona',
                                 on_delete=models.CASCADE,
                                 related_name='events-persona+')
@@ -127,7 +129,8 @@ class Event(models.Model):
         ordering = ['start']
 
 class EventReport(models.Model):
-    """Report of each event of EGD, colo, mano, pH, or else - 34 fields"""
+    """Report of each event of EGD, colo, mano, pH, or else"""
+    # EventReport (33)
     #event = models.OneToOneField('Event', on_delete=models.CASCADE)
     #reportUUID = models.UUIDField(default=uuid.uuid4, editable=False)
 
@@ -207,6 +210,7 @@ class EventReport(models.Model):
 
 class Persona(models.Model):
     """Persona model"""
+    # Persona (11)
     # user = models.ForeignKey(
     #    settings.AUTH_USER_MODEL,
     #    on_delete=models.CASCADE
@@ -234,7 +238,8 @@ class Persona(models.Model):
         return self.name
 
 class GenericGroup(models.Model):
-
+    """Fields for extra data, i.e., gg1 for log"""
+    #GenericGroup (10)
     gg1 = models.CharField(null=True, max_length=255, blank=True)
     gg2 = models.CharField(null=True, max_length=255, blank=True)
     gg3 = models.CharField(null=True, max_length=255, blank=True)
@@ -253,6 +258,8 @@ class GenericGroup(models.Model):
         return self.gg1
 
 class EmailFromSite(models.Model):
+    """Email from the home page"""
+    # EmailFromSite (4)
     name = models.CharField(null=True, max_length=255, blank=True)
     mobile = models.CharField(null=True, max_length=255, blank=True)
     email = models.CharField(null=True, max_length=255, blank=True)
