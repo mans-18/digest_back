@@ -27,6 +27,7 @@ from persona.serializers import (KollegeSerializer,
                                  EventSerializer,
                                  EventReportSerializer,
                                  PartnerSerializer,
+                                 GenericGroupSerializer,
                                  EmailFromSiteSerializer)
 
 from django.shortcuts import render, get_object_or_404, redirect
@@ -34,7 +35,7 @@ from django.http import Http404, HttpRequest, HttpResponse
 
 from collections import defaultdict
 
-from core.models import Kollege, Event, Persona, EventReport, Partner
+from core.models import Kollege, Event, Persona, GenericGroup, EventReport, Partner
 
 from persona import serializers
 
@@ -46,6 +47,7 @@ def api_root(request, format=None):
         'kollegen': reverse('kollege-list', request=request, format=format),
         'personas': reverse('persona-list', request=request, format=format),
         'events': reverse('event-list', request=request, format=format),
+        'genericgroup': reverse('genericgroup-list', request=request, format=format),
         'partners': reverse('partner-list', request=request, format=format),
         'eventreports': reverse('eventreport-list', request=request, format=format),
     })
@@ -328,8 +330,8 @@ class KollegeDetail(mixins.RetrieveModelMixin,
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
 
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
+ #   def delete(self, request, *args, **kwargs):
+  #      return self.destroy(request, *args, **kwargs)
 
 class PartnerList(mixins.ListModelMixin,
                   mixins.CreateModelMixin,
@@ -537,6 +539,47 @@ class EventDetail(mixins.RetrieveModelMixin,
         cv2.destroyAllWindows()
     '''
     ####################################################
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        #self.read_camera_capture(0)
+        return self.update(request, *args, **kwargs)
+    
+    def patch(self, request, *args, **kwargs):
+        #self.read_camera_capture(0)
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
+class GenericGroupList(mixins.ListModelMixin,
+                  mixins.CreateModelMixin,
+                  generics.GenericAPIView):
+    # pylint: disable=no-member
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+    authentication_classes = (TokenAuthentication,)
+
+    queryset = GenericGroup.objects.all()
+    serializer_class = GenericGroupSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+class GenericGroupListDetail(mixins.RetrieveModelMixin,
+                            mixins.UpdateModelMixin,
+                            mixins.DestroyModelMixin,
+                            generics.GenericAPIView):
+    # pylint: disable=no-member
+    queryset = GenericGroup.objects.all()
+    serializer_class = GenericGroupSerializer
+
+    permission_classes =[permissions.IsAuthenticatedOrReadOnly,]
+    authentication_classes = (TokenAuthentication,)
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
