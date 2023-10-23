@@ -330,8 +330,8 @@ class KollegeDetail(mixins.RetrieveModelMixin,
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
 
- #   def delete(self, request, *args, **kwargs):
-  #      return self.destroy(request, *args, **kwargs)
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
 
 class PartnerList(mixins.ListModelMixin,
                   mixins.CreateModelMixin,

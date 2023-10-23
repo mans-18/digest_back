@@ -255,7 +255,9 @@ class GenericGroup(models.Model):
         ordering = ['gg1']
 
     def __str__(self):
-        return self.gg1
+        # To garanttee a string. App may post a null property to gg1
+        # (non-string) which would cause an error in the admin site
+        return str(self.gg1) + str(self.id)
 
 class EmailFromSite(models.Model):
     """Email from the home page"""

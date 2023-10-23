@@ -73,8 +73,8 @@ class GenericGroupSerializer(serializers.ModelSerializer):
     """Serialize the GenericGroup, i.e., log"""
     class Meta:
         model = GenericGroup
-        fields = ('gg1', 'gg2', 'gg3', 'gg4', 'gg5', 'gg6', 'gg7', 'gg8', 'gg9', 'gg10')
-        read_only_fields = ('gg1',)
+        fields = ('id', 'gg1', 'gg2', 'gg3', 'gg4', 'gg5', 'gg6', 'gg7', 'gg8', 'gg9', 'gg10')
+        read_only_fields = ('id',)
 
 class EmailFromSiteSerializer(serializers.ModelSerializer):
     """Serialize data from email sent by site"""

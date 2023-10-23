@@ -78,15 +78,28 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'digproj.wsgi.application'
+DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
 
+WSGI_APPLICATION = 'digproj.wsgi.application'
 
 ### Required to deploy
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 
-DATABASES = {'default': config('DATABASE_URL', default=default_dburl, cast=dburl)}
+### This DB used locally in dev
+#DATABASES = {'default': config('DATABASE_URL', default=default_dburl, cast=dburl)}
 
 #DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dig',
+        'USER': 'admin',
+        'PASSWORD': os.environ.get('DIG_PSW'),
+        'HOST': 'localhost',
+        'PORT': ''
+    } 
+}
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -117,7 +130,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False #True
 
 STATIC_URL = '/static/'
 
@@ -127,7 +140,7 @@ EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD_DIGPROJ')
+EMAIL_HOST_PASSWORD = 'xiaqpmtvbyydtvug' #os.environ.get('EMAIL_HOST_PASSWORD_DIGPROJ')
 
 EMAIL_HOST_USER = 'miguel.sza@gmail.com'
 EMAIL_PORT = 587
